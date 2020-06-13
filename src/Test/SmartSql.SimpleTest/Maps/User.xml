@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+//*******************************
+// Create By Ahoo Wang
+// Date 2019-04-18 12:59
+// Code Generate By SmartCode
+// Code Generate Github : https://github.com/Ahoo-Wang/SmartCode
+//*******************************-->
+
+<SmartSqlMap Scope="User" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+
+  <Statements>
+    <!--新增-->
+    <Statement Id="Insert-1">
+      INSERT INTO T_User
+      (
+      UserName,
+      Status
+      )
+      VALUES
+      (
+      @UserName,
+      @Status
+      )
+      ;Select Scope_Identity();
+    </Statement>
+
+    <Statement Id="QueryById">
+      Select id,Username,status from user Where id=@Id
+    </Statement>
+
+    <Statement Id="GetUser">
+      Select id AS Id,username AS User_Name,status AS Status From user T
+      <Where>
+        <IsNotEmpty Prepend="And" Property="Id">
+          T.id=?Id
+        </IsNotEmpty>
+      </Where>
+    </Statement>
+  </Statements>
+</SmartSqlMap>
