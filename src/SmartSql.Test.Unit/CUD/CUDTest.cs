@@ -37,6 +37,24 @@ namespace SmartSql.Test.Unit.CUD
         }
 
         [Fact]
+        public void InsertUser()
+        {
+            int successed_count = 0;
+            for (int i = 3; i < 10; i++)
+            {
+                var insertEntity = new User
+                {
+                    Id = i,
+                    Status = UserStatus.Ok,
+                    UserName = "chenger-" + i.ToString()
+                };
+                var recordsAffected = SqlMapper.Insert<User>(insertEntity);
+                successed_count += recordsAffected;
+            };
+            Assert.Equal(7, successed_count);
+        }
+
+        [Fact]
         public void Insert_Return_Id()
         {
             AllPrimitive insertEntity = InsertReturnIdImpl(out long id);
