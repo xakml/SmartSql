@@ -124,6 +124,8 @@
             <Include RefId="QueryParams"/>
         </Statement>
 
-
+		<Statement Id="GetVWList">
+			select T_user.Id, T_user.UserName, T_user.Status,t_customer.id AS CustomerId,t_customer.name AS CustomerName from T_user left join t_customer on t_user.customer_id = t_customer.id
+		</Statement>
     </Statements>
 </SmartSqlMap>

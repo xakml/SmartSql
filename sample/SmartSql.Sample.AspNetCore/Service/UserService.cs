@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SmartSql.AOP;
-using SmartSql.Sample.AspNetCore.DyRepositories;
+//using SmartSql.Sample.AspNetCore.DyRepositories;
+using SmartSql.Sample.Repos;
 using SmartSql.Test.Entities;
 
 namespace SmartSql.Sample.AspNetCore.Service

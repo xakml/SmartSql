@@ -42,11 +42,13 @@ namespace SmartSql.Sample.AspNetCore
                 })
                 .AddRepositoryFromAssembly(o =>
                 {
-                    o.AssemblyString = "SmartSql.Sample.AspNetCore";
-                    o.Filter = (type) => type.Namespace == "SmartSql.Sample.AspNetCore.DyRepositories";
+                    //o.AssemblyString = "SmartSql.Sample.AspNetCore";
+                    //o.Filter = (type) => type.Namespace == "SmartSql.Sample.AspNetCore.DyRepositories";
+                    o.AssemblyString = "SmartSql.Sample.Repos";
+                    o.Filter = (type) => type.Namespace == "SmartSql.Sample.Repos";
                 })
                 .AddInvokeSync(options => { })
-                .AddRabbitMQPublisher(options =>
+                /**.AddRabbitMQPublisher(options =>
                 {
                     options.HostName = "localhost";
                     options.UserName = "guest";
@@ -54,7 +56,8 @@ namespace SmartSql.Sample.AspNetCore
                     options.Exchange = "smartsql";
                     options.RoutingKey = "smartsql.sync";
 
-                });
+                })
+                **/;
 //                .AddRabbitMQSubscriber(options =>
 //                {
 //                    options.HostName = "localhost";
@@ -71,7 +74,10 @@ namespace SmartSql.Sample.AspNetCore
 //                    options.RoutingKey = "smartsql-sync-1";
 //                    options.QueueName = "second";
 //                });
+
             services.AddSingleton<UserService>();
+            services.AddSingleton<CustomerService>();
+            
             RegisterConfigureSwagger(services);
             return services.BuildAspectInjectorProvider();
         }

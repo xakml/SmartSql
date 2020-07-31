@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SmartSqlMap Scope="Customer" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+	<Statements>
+		<!--新增-->
+		<Statement Id="Insert">
+			INSERT INTO T_Customer
+			(
+			name
+			)
+			VALUES
+			(
+			@Name
+			)
+			;select last_insert_rowid() from T_customer
+		</Statement>
+	</Statements>
+</SmartSqlMap>
