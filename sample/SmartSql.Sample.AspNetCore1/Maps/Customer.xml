@@ -13,5 +13,9 @@
 			)
 			;select last_insert_rowid() from T_customer
 		</Statement>
+
+		<Statement Id="SelectAll">
+			SELECT id AS Id,name AS Name from t_customer
+		</Statement>
 	</Statements>
 </SmartSqlMap>

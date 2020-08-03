@@ -1,4 +1,5 @@
 ﻿using SmartSql.Test.Entities;
+using System.Collections.Generic;
 
 namespace SmartSql.Sample.AspNetCore1.DyRepositories
 {
@@ -6,5 +7,7 @@ namespace SmartSql.Sample.AspNetCore1.DyRepositories
     {
         ISqlMapper SqlMapper { get; }
         long Insert(Customer entity);
+
+        IEnumerable<Customer> SelectAll();
     }
 }

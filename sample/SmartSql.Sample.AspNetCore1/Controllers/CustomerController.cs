@@ -20,5 +20,12 @@ namespace SmartSql.Sample.AspNetCore1.Controllers
             long id = this._customerRepository.Insert(cust);
             return Ok(id);
         }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var list = this._customerRepository.SelectAll();
+            return Ok(list);
+        }
     }
 }
