@@ -17,5 +17,19 @@
 		<Statement Id="SelectAll">
 			SELECT id AS Id,name AS Name from t_customer
 		</Statement>
+		
+		<!--动态条件查询-->
+		<Statement Id="SelectByCondition">
+			SELECT id AS Id,name AS Name from t_customer
+			<Where>
+				<IsGreaterThan Property="Id" Prepend="AND" CompareValue="0">
+					t_customer.id = @Id
+				</IsGreaterThan>
+				<IsNotEmpty Property="Name" Prepend="And">
+					t_customer.name = @Name
+				</IsNotEmpty>
+		</Where>
+		</Statement>
+		
 	</Statements>
 </SmartSqlMap>

@@ -27,5 +27,20 @@ namespace SmartSql.Sample.AspNetCore1.Controllers
             var list = this._customerRepository.SelectAll();
             return Ok(list);
         }
+
+        [HttpGet("{id:long}")]
+        public IActionResult GetById(long id)
+        {
+            var list = this._customerRepository.SelectByCondition(new Test.DTO.CustomerQueryConditon() { Id = id });
+            return Ok(list);
+        }
+
+
+        [HttpGet("{name}")]
+        public IActionResult GetByName(string name)
+        {
+            var list = this._customerRepository.SelectByCondition(new Test.DTO.CustomerQueryConditon() {  Name = name});
+            return Ok(list);
+        }
     }
 }
