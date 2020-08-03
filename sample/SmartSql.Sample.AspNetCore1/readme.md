@@ -23,10 +23,10 @@
 ```
 
 #### 1.2 需要引用的必要项目如下
-> SmartSql.DIExtension.dll
-	SmartSql.DyRepository.dll
-	SmartSql.InvokeSync.dll
-	SmartSql.ScriptTag.dll
-	SmartSql.Test.dll
-	SmartSql.TypeHandler.dll
-	SmartSql.dll
+> SmartSql.DIExtension.dll  
+	SmartSql.DyRepository.dll  
+	SmartSql.InvokeSync.dll  
+	SmartSql.ScriptTag.dll  
+	SmartSql.Test.dll  
+	SmartSql.TypeHandler.dll  
+	SmartSql.dll  
