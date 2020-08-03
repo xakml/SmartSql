@@ -4,10 +4,19 @@
 	<Database>
 		<!--这里使用Sqlite数据， 在.netcore2.2中使用版本System.Data.SQLite(1.0.111)-->
 		<!--这里使用Sqlite数据， 在.netcore3.1中使用版本System.Data.SQLite(1.0.113.1)-->
+
+		<!--<DbProvider Name="SQLite"/>
+		<DbProvider Name="SqlServer"/>
+		<DbProvider Name="MsSqlServer"/>
+		<DbProvider Name="PostgreSql"/>
+		<DbProvider Name="Oracle"/>
 		<DbProvider Name="SQLite"/>
-		<Write Name="WriteDB" ConnectionString="${ConnectionString}"/>
-		<Read Name="ReadDb-1" ConnectionString="${ConnectionString}" Weight="100"/>
-		<Read Name="ReadDb-2" ConnectionString="${ConnectionString}" Weight="100"/>
+		<DbProvider Name="MySql"/>-->
+		<DbProvider Name="MySql"/>
+		<Write Name="WriteDB" ConnectionString="${ConnectionStrings:DefaultConnection}"/>
+			<!--DefaultConnection-->
+		<Read Name="ReadDb-1" ConnectionString="${ConnectionStrings:DefaultConnection}" Weight="100"/>
+		<Read Name="ReadDb-2" ConnectionString="${ConnectionStrings:DefaultConnection}" Weight="100"/>
 	</Database>
 	<SmartSqlMaps>
 		<SmartSqlMap Path="Maps" Type="Directory"></SmartSqlMap>

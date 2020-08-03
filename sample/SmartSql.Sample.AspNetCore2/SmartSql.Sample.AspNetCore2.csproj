@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.21" />
     <PackageReference Include="SmartSql" Version="4.1.56" />
     <PackageReference Include="SmartSql.DIExtension" Version="4.1.56" />
     <PackageReference Include="SmartSql.DyRepository" Version="4.1.56" />
@@ -20,6 +21,9 @@
     </None>
     <None Update="Maps\Customer.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Maps\SysRole.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="SmartSqlMapConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
