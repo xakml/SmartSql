@@ -27,5 +27,10 @@ namespace SmartSql.Sample.AspNetCore.Service
         {
             return _userRepository.Insert(customer);
         }
+
+        public virtual Customer Get(long id)
+        {
+            return _userRepository.GetById(id);
+        }
     }
 }

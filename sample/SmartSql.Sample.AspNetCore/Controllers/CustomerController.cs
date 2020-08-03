@@ -30,5 +30,12 @@ namespace SmartSql.Sample.AspNetCore.Controllers
             long id = this._customerService.AddWithTran(cust);
             return Ok(id);
         }
+
+        [HttpGet]
+        public IActionResult Get(long id)
+        {
+            var customer = this._customerService.Get(id);
+            return Ok(customer);
+        }
     }
 }

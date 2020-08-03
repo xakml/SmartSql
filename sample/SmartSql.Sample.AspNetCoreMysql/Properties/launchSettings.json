@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:56577",
+      "applicationUrl": "http://localhost:58327",
       "sslPort": 0
     }
   },
@@ -17,10 +17,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "SmartSql.Sample.AspNetCore1": {
+    "SmartSql.Sample.AspNetCoreMysql": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/customer/10",
+      "launchUrl": "api/role?id=1",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
