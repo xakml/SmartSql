@@ -1,5 +1,5 @@
 
-# SmartSql ([Document](https://smartsql.net/en/))
+# Clone from ([dotnetcore](https://github.com/dotnetcore/SmartSql))
 
 <p align="center">
   <a href="https://smartsql.net/en/" target="_blank">
@@ -9,16 +9,16 @@
 
 # Overview
 
-> SmartSql = MyBatis + Cache(Memory | Redis) + R/W Splitting +Dynamic Repository + Diagnostics ......
+> 官方文档请访问
+> https://github.com/dotnetcore/SmartSql/blob/master/README.md
 ---
-> Simple, efficient, high-performance, scalable, monitoring, progressive development!
 
-## How does she work?
 
-SmartSql draws on MyBatis's ideas, uses XML to manage SQL, and provides several filter tags to eliminate various if/else judgment branches at the code level. 
-SmartSql will manage your SQL and filter the tags to maintain your various conditional judgments at the code level to make your code more beautiful.
+## 入门问题总结
 
-## Why Choose SmartSql?
+入门使用过程中参考了不少官方的文档， 大部分都是整体的概述， 很多细节容易出错的地方没讲到，这里总结一些我自己遇到的小问题（netcore平台的优质ORM框架实在不好找， 那就出一份里来维护这个看起来还不错的开源项目吧）
+
+## 链接Mysql
 
 The Orm,linq of the DotNet system, which is mostly Linq, is very good, eliminating the developer's reliance on SQL. But it ignores the fact that SQL itself is not complex, and that it is difficult for developers to write Linq to generate good performance SQL in complex query scenarios, and I believe that students who have used EF must have this experience: "I think about how SQL writes, and then I write Linq, It's over. You may also want to see what SQL output of Linq is like. " It was a very bad experience. To be absolutely optimized for SQL, developers must have absolute control over SQL. In addition, SQL itself is very simple, why add a layer of translators?
 
@@ -381,3 +381,4 @@ SmartSql currently supports Skywalking monitoring and is enabled by installing t
 ## QQGroup
 
 Click on the link to join the QQ group [SmartSql official QQ group]:[604762592](https://jq.qq.com/?_wv=1027&k=5Sy8Ahw)
+
