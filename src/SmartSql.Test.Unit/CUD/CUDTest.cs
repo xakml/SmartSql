@@ -44,7 +44,7 @@ namespace SmartSql.Test.Unit.CUD
             {
                 var insertEntity = new User
                 {
-                    Id = i,
+                    //Id = i,// 若主键字段为自增时, 可不主动设置此属性值
                     Status = UserStatus.Ok,
                     UserName = "chenger-" + i.ToString()
                 };
