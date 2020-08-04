@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SmartSql.Sample.AspNetCore.DyRepositories;
+//using SmartSql.Sample.AspNetCore.DyRepositories;
 using SmartSql.Sample.AspNetCore.Service;
+using SmartSql.Sample.Repos;
 using SmartSql.Test.DTO;
 using SmartSql.Test.Entities;
 
@@ -103,6 +104,12 @@ namespace SmartSql.Sample.AspNetCore.Controllers
                 _userRepository.SqlMapper.RollbackTransaction();
                 throw;
             }
+        }
+
+        [HttpGet("vws")]
+        public IEnumerable<UserVW> GetVWs()
+        {
+            return this._userRepository.GetVWList();
         }
     }
 }

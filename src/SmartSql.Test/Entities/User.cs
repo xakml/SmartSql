@@ -33,6 +33,8 @@ namespace SmartSql.Test.Entities
         public virtual long Id { get; set; }
         public virtual String UserName { get; set; }
         public virtual UserStatus Status { get; set; }
+
+        public long CustomerId { get; set; }
     }
 
     public enum UserStatus : Int16

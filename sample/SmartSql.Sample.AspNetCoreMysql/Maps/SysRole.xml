@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SmartSqlMap Scope="SysRole" xmlns="http://SmartSql.net/schemas/SmartSqlMap.xsd">
+	<Statements>
+		<!--新增-->
+		<Statement Id="SelectSysRoleById">
+			SELECT id AS Id,
+			display_cnname AS DisplayCnname,
+			display_enname AS DisplayEnname,
+			status AS Status,
+			note AS Note,
+			link_uri AS LinkUri,
+			created_time AS CreatedTime,
+			last_modified_time AS LastModifiedTime,
+			ver AS Ver,
+			created_by AS CreatedBy,
+			last_modified_by AS LastModifiedBy
+			FROM sys_role
+			<Where>
+				<IsGreaterThan Property="Id" CompareValue="0">
+					id=@Id
+				</IsGreaterThan>
+			</Where>
+		</Statement>
+	</Statements>
+</SmartSqlMap>

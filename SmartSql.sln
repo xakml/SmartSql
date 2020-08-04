@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartSql", "src\SmartSql\SmartSql.csproj", "{88EAF92D-6365-494C-96CC-FABD961B4CA5}"
 EndProject
@@ -107,7 +107,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MySql", "MySql", "{4B42D3E1
 		src\Test\DbScripts\MySql\user_ddl.sql = src\Test\DbScripts\MySql\user_ddl.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSql.SimpleTest", "src\Test\SmartSql.SimpleTest\SmartSql.SimpleTest.csproj", "{569122A8-FF98-485A-96D3-DDCB87AB61F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartSql.SimpleTest", "src\Test\SmartSql.SimpleTest\SmartSql.SimpleTest.csproj", "{569122A8-FF98-485A-96D3-DDCB87AB61F6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartSql.Sample.Repos", "sample\SmartSql.Sample.Repos\SmartSql.Sample.Repos.csproj", "{042709D9-D8CA-4859-BABE-70F86F73B774}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartSql.Sample.AspNetCore1", "sample\SmartSql.Sample.AspNetCore1\SmartSql.Sample.AspNetCore1.csproj", "{77C66448-C59F-4A1C-B6C2-44EAF7E4D8E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSql.Sample.AspNetCore2", "sample\SmartSql.Sample.AspNetCore2\SmartSql.Sample.AspNetCore2.csproj", "{6CADF4CC-7137-4702-A60A-CB402434C424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartSql.Sample.AspNetCoreMysql", "sample\SmartSql.Sample.AspNetCoreMysql\SmartSql.Sample.AspNetCoreMysql.csproj", "{2C380CD3-2C32-4FC7-8F96-797A16C162E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -223,6 +231,22 @@ Global
 		{569122A8-FF98-485A-96D3-DDCB87AB61F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{569122A8-FF98-485A-96D3-DDCB87AB61F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{569122A8-FF98-485A-96D3-DDCB87AB61F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{042709D9-D8CA-4859-BABE-70F86F73B774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{042709D9-D8CA-4859-BABE-70F86F73B774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{042709D9-D8CA-4859-BABE-70F86F73B774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{042709D9-D8CA-4859-BABE-70F86F73B774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C66448-C59F-4A1C-B6C2-44EAF7E4D8E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C66448-C59F-4A1C-B6C2-44EAF7E4D8E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C66448-C59F-4A1C-B6C2-44EAF7E4D8E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C66448-C59F-4A1C-B6C2-44EAF7E4D8E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CADF4CC-7137-4702-A60A-CB402434C424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CADF4CC-7137-4702-A60A-CB402434C424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CADF4CC-7137-4702-A60A-CB402434C424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CADF4CC-7137-4702-A60A-CB402434C424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C380CD3-2C32-4FC7-8F96-797A16C162E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C380CD3-2C32-4FC7-8F96-797A16C162E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C380CD3-2C32-4FC7-8F96-797A16C162E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C380CD3-2C32-4FC7-8F96-797A16C162E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,6 +289,10 @@ Global
 		{E6FE5386-67EC-40F0-8DBE-7C7616A88C46} = {AEE829CC-51F5-4662-8C53-C585052E0764}
 		{4B42D3E1-D426-45E2-B926-A69FF0B4B232} = {E6FE5386-67EC-40F0-8DBE-7C7616A88C46}
 		{569122A8-FF98-485A-96D3-DDCB87AB61F6} = {AEE829CC-51F5-4662-8C53-C585052E0764}
+		{042709D9-D8CA-4859-BABE-70F86F73B774} = {E0AF1B38-B6B1-471B-9493-B84B066109F6}
+		{77C66448-C59F-4A1C-B6C2-44EAF7E4D8E4} = {E0AF1B38-B6B1-471B-9493-B84B066109F6}
+		{6CADF4CC-7137-4702-A60A-CB402434C424} = {E0AF1B38-B6B1-471B-9493-B84B066109F6}
+		{2C380CD3-2C32-4FC7-8F96-797A16C162E9} = {E0AF1B38-B6B1-471B-9493-B84B066109F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6942F9AB-D574-4C16-8CF7-0D10B637237B}

@@ -18,6 +18,7 @@
         <MultipleResultMap Id="QueryByPageResult">
             <Result Property="List"/>
             <Result Property="Total"/>
+            <Result Property="UserName"/>
         </MultipleResultMap>
     </MultipleResultMaps>
     <Statements>
@@ -96,6 +97,7 @@
             Limit @PageSize Offset 0;
             Select Count(1) From T_User T
             <Include RefId="QueryParams"/>;
+            Select 'SmartSql';
         </Statement>
 
         <!--获取记录数-->
@@ -122,6 +124,8 @@
             <Include RefId="QueryParams"/>
         </Statement>
 
-
+		<Statement Id="GetVWList">
+			select T_user.Id, T_user.UserName, T_user.Status,t_customer.id AS CustomerId,t_customer.name AS CustomerName from T_user left join t_customer on t_user.customer_id = t_customer.id
+		</Statement>
     </Statements>
 </SmartSqlMap>

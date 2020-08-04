@@ -6,9 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DyRepositories\ICustomerRepository.cs" />
+    <Compile Remove="DyRepositories\IUserRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="SkyAPM.Agent.AspNetCore" Version="0.9.0" />
+    <PackageReference Include="SkyAPM.Diagnostics.SmartSql" Version="0.9.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.111" />
   </ItemGroup>
@@ -30,9 +37,13 @@
     <ProjectReference Include="..\..\src\SmartSql.TypeHandler.PostgreSql\SmartSql.TypeHandler.PostgreSql.csproj" />
     <ProjectReference Include="..\..\src\SmartSql.TypeHandler\SmartSql.TypeHandler.csproj" />
     <ProjectReference Include="..\..\src\SmartSql\SmartSql.csproj" />
+    <ProjectReference Include="..\SmartSql.Sample.Repos\SmartSql.Sample.Repos.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Maps\Customer.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="SmartSqlMapConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -42,6 +53,10 @@
     <None Update="DB\SmartSql.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DyRepositories\" />
   </ItemGroup>
 
 </Project>
