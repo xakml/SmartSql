@@ -56,9 +56,20 @@ namespace SmartSql.Utils
             }
             using (var xmlReader = new XmlTextReader(filePath))
             {
-                var xml = new XmlDocument();
-                xml.Load(xmlReader);
-                return xml;
+                try
+                {
+                    var xml = new XmlDocument();
+                    xml.Load(xmlReader);
+                    return xml;
+                }
+                catch (System.Xml.XmlException xml_ex)
+                {
+                    throw new SmartSql.Exceptions.SmartSqlException("load map file failed,\r\nfile name " + filePath,xml_ex);
+                }
+                catch(Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
 
