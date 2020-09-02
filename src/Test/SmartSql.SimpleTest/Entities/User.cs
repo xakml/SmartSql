@@ -2,6 +2,7 @@
 
 namespace SmartSql.SimpleTest.Entities
 {
+    [SmartSql.Annotations.Table("t_user")]
     public class User
     {
         public User()
@@ -16,18 +17,18 @@ namespace SmartSql.SimpleTest.Entities
         public User(long id, string name)
         {
             Id = id;
-            User_Name = name;
+            UserName = name;
         }
 
         public User(long id, string name, UserStatus status)
         {
             Id = id;
-            User_Name = name;
+            UserName = name;
             Status = status;
         }
 
         public virtual long Id { get; set; }
-        public virtual String User_Name { get; set; }
+        public virtual String UserName { get; set; }
         public virtual UserStatus Status { get; set; }
     }
 

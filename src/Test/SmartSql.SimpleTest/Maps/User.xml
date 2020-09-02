@@ -11,31 +11,35 @@
 
   <Statements>
     <!--新增-->
+	  <Statement Id="QueryCondition">
+		  <Where>
+			  T.status = 1
+			  <IsGreaterThan Property="Id" CompareValue="0" Prepend="AND">
+				  T.id = @Id
+			  </IsGreaterThan>
+		  </Where>
+	  </Statement>
     <Statement Id="Insert-1">
-      INSERT INTO T_User
-      (
-      UserName,
-      Status
-      )
-      VALUES
-      (
-      @UserName,
-      @Status
-      )
-      ;Select Scope_Identity();
-    </Statement>
+		INSERT INTO T_User
+		(
+		UserName,
+		Status
+		)
+		VALUES
+		(
+		@UserName,
+		@Status
+		)
+		;Select LAST_INSERT_ID();
+	</Statement>
 
     <Statement Id="QueryById">
       Select id,Username,status from user Where id=@Id
     </Statement>
 
     <Statement Id="GetUser">
-      Select id AS Id,username AS User_Name,status AS Status From user T
-      <Where>
-        <IsNotEmpty Prepend="And" Property="Id">
-          T.id=?Id
-        </IsNotEmpty>
-      </Where>
+		Select id AS Id,username AS UserName,status AS Status From t_user T
+		<Include RefId="QueryCondition" />
     </Statement>
   </Statements>
 </SmartSqlMap>

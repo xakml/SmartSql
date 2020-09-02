@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SmartSqlMapConfig xmlns="http://SmartSql.net/schemas/SmartSqlMapConfig.xsd">
-  <Settings IgnoreParameterCase="false" ParameterPrefix="$"  IsCacheEnabled="true" EnablePropertyChangedTrack="true" IgnoreDbNull="true"/>
+  <Settings IgnoreParameterCase="false" ParameterPrefix="@"  IsCacheEnabled="true" EnablePropertyChangedTrack="true" IgnoreDbNull="true"/>
   <Properties>
 <!--    <Property Name="Redis" Value="localhost"/>-->
     <Property Name="DbProvider" Value="MsSqlServer"/>
-    <Property Name="MySqlConnectionString" Value="server=127.0.0.1;port=3306;user id=root;password=abc,123;database=smartsqltestdb;CharSet=utf8;allow zero datetime=true;Convert Zero Datetime=true;SslMode=none"/>
+    <Property Name="MySqlConnectionString" Value="server=192.168.1.169;port=3306;user id=smartsql_user_rw;password=123456;database=smartsqltestdb;CharSet=utf8;allow zero datetime=true;Convert Zero Datetime=true;SslMode=none"/>
     <Property Name="ConnectionString" Value="Data Source=.;Initial Catalog=SmartSqlTestDB;Integrated Security=True"/>
     <Property Name="JsonTypeHandler`" Value="SmartSql.TypeHandler.JsonTypeHandler`1,SmartSql.TypeHandler"/>
     <Property Name="JsonTypeHandler" Value="SmartSql.TypeHandler.JsonTypeHandler,SmartSql.TypeHandler"/>

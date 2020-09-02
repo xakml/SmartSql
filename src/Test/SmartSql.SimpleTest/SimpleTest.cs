@@ -26,7 +26,7 @@ namespace SmartSql.SimpleTest
             SqlMapper = smartSqlBuilder.SqlMapper;
         }
         /// <summary>
-        /// 测试保存单个实体类
+        /// 测试保存单个实体类,使用map文件中手动编写的sql脚本,脚本ID需要手动指定
         /// </summary>
         [TestMethod]
         public void TestInsertUser()
@@ -40,20 +40,44 @@ namespace SmartSql.SimpleTest
             user = new Entities.User()
             {
                 Status = Entities.UserStatus.Ok,
-                User_Name = "chenger-" + DateTime.Now.ToLongTimeString()
+                UserName = "chenger-" + DateTime.Now.ToLongTimeString()
             };
-            int recordsAffected = SqlMapper.Insert<Entities.User>(user);
-            System.Threading.Thread.Sleep(1000);
-            user = new Entities.User()
+            long recordsAffected = SqlMapper.ExecuteScalar<long>(new RequestContext() 
             {
-                Status = Entities.UserStatus.Ok,
-                User_Name = "chenger-" + DateTime.Now.ToLongTimeString()
-            };
-            recordsAffected = SqlMapper.Insert<Entities.User>(user);
+                Scope="User",
+                SqlId = "Insert-1",
+                Request = user
+            });
+
+            //System.Threading.Thread.Sleep(1000);
+            //user = new Entities.User()
+            //{
+            //    Status = Entities.UserStatus.Ok,
+            //    User_Name = "chenger-" + DateTime.Now.ToLongTimeString()
+            //};
+            //recordsAffected = SqlMapper.Insert<Entities.User>(user);
+            Console.WriteLine($"recordsAffected={recordsAffected}");
             Assert.AreEqual(1, recordsAffected);
         }
 
-        private Entities.User GetUser()
+        /// <summary>
+        /// 测试使用默认的INSERT语句保存新纪录
+        /// 需要使用<code>SmartSql.Annotations.Table("实际的表名称")</code>
+        /// </summary>
+        [TestMethod]
+        public void TestInsertUseDefaultSql()
+        {
+          var user = new Entities.User()
+            {
+                Status = Entities.UserStatus.Ok,
+                UserName = "chenger-" + DateTime.Now.ToLongTimeString()
+            };
+            int recordsAffected = SqlMapper.Insert<Entities.User>(user);
+            Console.WriteLine($"recordsAffected={recordsAffected}");
+            Assert.AreEqual(1, recordsAffected);
+        }
+
+        private Entities.User GetUser(long id)
         {
             var user = SqlMapper.QuerySingle<Entities.User>(new RequestContext
             {
@@ -61,7 +85,7 @@ namespace SmartSql.SimpleTest
                 SqlId = "GetUser",
                 Request = new
                 {
-                    Id = 22
+                    Id = id
                 },
             });
             return user;
@@ -70,9 +94,9 @@ namespace SmartSql.SimpleTest
         [TestMethod]
         public void TestGetUser()
         {
-            Entities.User user = this.GetUser();
+            Entities.User user = this.GetUser(6);
             if (user != null)
-                Console.WriteLine(user.User_Name);
+                Console.WriteLine(user.UserName);
             else
                 Console.WriteLine("user is null");
         }
