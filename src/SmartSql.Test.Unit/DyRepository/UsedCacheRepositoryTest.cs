@@ -1,7 +1,5 @@
 using System.Threading;
-using SmartSql.DyRepository;
 using SmartSql.Test.Repositories;
-using Microsoft.Extensions.Logging;
 using SmartSql.Test.Entities;
 using Xunit;
 
@@ -20,9 +18,8 @@ namespace SmartSql.Test.Unit.DyRepository
         [Fact]
         public void GetNow()
         {
-            
             var datetime = _usedCacheRepository.GetNow();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             var datetime1 = _usedCacheRepository.GetNow();
             Assert.Equal(datetime, datetime1);
         }

@@ -11,7 +11,7 @@ namespace SmartSql.Test.Unit.Bulk
 {
     public class PostgreSqlTest
     {
-        [Fact]
+        [EnvironmentFact(include:"POSTGRE_SQL")]
         public void Insert()
         {
             var dbSessionFactory = new SmartSqlBuilder()

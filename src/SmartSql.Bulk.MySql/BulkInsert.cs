@@ -1,9 +1,9 @@
 ﻿using SmartSql.DbSession;
 using SmartSql.Reflection.TypeConstants;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,12 +12,14 @@ using MySqlConnector;
 namespace SmartSql.Bulk.MySqlConnector
 #else
 using MySql.Data.MySqlClient;
+
 namespace SmartSql.Bulk.MySql
 #endif
 {
     public class BulkInsert : AbstractBulkInsert
     {
         const string NULL_VALUE = "NULL";
+
         public BulkInsert(IDbSession dbSession) : base(dbSession)
         {
         }
@@ -31,7 +33,8 @@ namespace SmartSql.Bulk.MySql
         }
 
         public String SecureFilePriv { get; set; }
-        public String DateTimeFormat { get; set; }
+        public String DateTimeFormat { get; set; } = "yyyy-MM-dd HH:mm:ss";
+        public List<string> Expressions { get; } = new List<string>();
         private string _fieldTerminator = ",";
         private char _fieldQuotationCharacter = '"';
         private char _escapeCharacter = '"';
@@ -62,6 +65,8 @@ namespace SmartSql.Bulk.MySql
             {
                 bulkLoader.Columns.Add(dbCol.ColumnName);
             }
+
+            bulkLoader.Expressions.AddRange(Expressions);
 
             return bulkLoader;
         }
@@ -94,6 +99,18 @@ namespace SmartSql.Bulk.MySql
                             var dateCell = (DateTime)originCell;
                             var dateCellTime = dateCell.ToString(DateTimeFormat);
                             dataBuilder.Append(dateCellTime);
+                        }
+                    }
+                    else if (dataColumn.DataType == CommonType.Boolean || dataColumn.DataType == typeof(bool?))
+                    {
+                        var originCell = row[dataColumn];
+                        if (originCell is DBNull)
+                        {
+                            dataBuilder.Append(NULL_VALUE);
+                        }
+                        else
+                        {
+                            dataBuilder.Append(Convert.ToByte(originCell));
                         }
                     }
                     else if (row[dataColumn] is DBNull || dataColumn.AutoIncrement)

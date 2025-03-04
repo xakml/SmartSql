@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using SmartSql.Bulk;
 using SmartSql.Bulk.MySql;
 using SmartSql.DataSource;
 using SmartSql.Test.Entities;
-using Xunit;
 
 namespace SmartSql.Test.Unit.Bulk
 {
     public class MySqlTest
     {
-        [Fact]
+        [EnvironmentFact(include:"MY_SQL")]
         public void Insert()
         {
             var dbSessionFactory = new SmartSqlBuilder()
-                .UseDataSource(DbProvider.MYSQL, "Data Source=localhost;database=SmartSqlTestDB;uid=root;pwd=SmartSql.net")
+                .UseDataSource(DbProvider.MYSQL, "Data Source=localhost;database=SmartSqlTestDB;uid=root;pwd=root")
                 .UseAlias("MySqlTest")
                 .Build().GetDbSessionFactory();
 

@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SmartSql.Test.Entities;
+using System.Linq;
 using SmartSql.Test.Repositories;
 using Xunit;
-using Microsoft.Extensions.Logging;
-using SmartSql.DyRepository;
 
 namespace SmartSql.Test.Unit.DyRepository
 {
     [Collection("GlobalSmartSql")]
-    public class AllPrimitiveRepositoryTest 
+    public class AllPrimitiveRepositoryTest
     {
-        private IAllPrimitiveRepository _repository;
+        private readonly IAllPrimitiveRepository _repository;
+        private ISqlMapper _mapper;
         public AllPrimitiveRepositoryTest(SmartSqlFixture smartSqlFixture)
         {
             _repository = smartSqlFixture.AllPrimitiveRepository;
+            _mapper = smartSqlFixture.SqlMapper;
         }
+
         [Fact]
         public void GetByPage_ValueTuple()
         {
@@ -23,7 +23,7 @@ namespace SmartSql.Test.Unit.DyRepository
 
             Assert.NotNull(result);
         }
-        
+
         [Fact]
         public void QueryDictionary()
         {
@@ -31,6 +31,25 @@ namespace SmartSql.Test.Unit.DyRepository
 
             Assert.NotNull(result);
         }
-        
+
+        [Theory]
+        [InlineData(1, NumericalEnum11.One)]
+        [InlineData(2, NumericalEnum11.Two)]
+        public void GetNumericalEnums(int value, NumericalEnum11 numericalEnum)
+        {
+            var list = _mapper.Query<NumericalEnum11?>(new RequestContext
+            {
+                RealSql = "SELECT NumericalEnum FROM T_AllPrimitive WHERE NumericalEnum = ?value",
+                Request = new { value }
+            });
+
+            Assert.NotNull(list);
+            Assert.True(list.All(t => t == numericalEnum));
+
+            var result = _repository.GetNumericalEnums(value);
+
+            Assert.NotNull(result);
+            Assert.True(result.All(t => t == numericalEnum));
+        }
     }
 }

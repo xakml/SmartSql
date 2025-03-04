@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
 using SmartSql.Bulk;
 using SmartSql.Test.Entities;
 using Xunit;
@@ -33,9 +29,10 @@ namespace SmartSql.Test.Unit.Bulk
             }
 
             var watch = Stopwatch.StartNew();
-            var dataTableE1 = list.ToDataTable();
+            var dataTable = list.ToDataTable();
             _output.WriteLine($"ToDataTable taken :{watch.ElapsedMilliseconds}");
             watch.Stop();
+            Assert.Equal(list.Count, dataTable.Rows.Count);
         }
     }
 }

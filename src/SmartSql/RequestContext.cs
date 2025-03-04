@@ -12,7 +12,12 @@ namespace SmartSql
 {
     public abstract class AbstractRequestContext
     {
-        public ExecutionContext ExecutionContext { get; internal set; }
+        /// <summary>
+        /// current request execution context.
+        /// the set method is only used for unit testing.
+        /// </summary>
+        public ExecutionContext ExecutionContext { get; set; }
+
         public ExecutionType ExecutionType { get; set; }
         public DataSourceChoice DataSourceChoice { get; set; } = DataSourceChoice.Unknow;
         public CommandType CommandType { get; set; } = CommandType.Text;
@@ -21,11 +26,10 @@ namespace SmartSql
         public int? CommandTimeout { get; set; }
         public bool? EnablePropertyChangedTrack { get; set; }
         public Statement Statement { get; internal set; }
-        public StringBuilder SqlBuilder { get; internal set; }
+        public StringBuilder SqlBuilder { get; internal set; } = new StringBuilder();
         public bool IsStatementSql { get; internal set; } = true;
         internal bool IgnorePrepend { get; set; } = false;
         public String RealSql { get; set; }
-
         public String AutoConverterName { get; set; }
 
         internal IAutoConverter AutoConverter { get; set; }
@@ -130,7 +134,7 @@ namespace SmartSql
 
         public override void SetRequest(object requestObj)
         {
-            Request = (TRequest) requestObj;
+            Request = (TRequest)requestObj;
         }
 
         public override object GetRequest()

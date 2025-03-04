@@ -11,8 +11,8 @@ using SmartSql.Utils;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using SmartSql.Command;
+using SmartSql.CUD;
 using SmartSql.Deserializer;
 using SmartSql.Filters;
 using SmartSql.Reflection.TypeConstants;
@@ -54,7 +54,7 @@ namespace SmartSql
             new List<KeyValuePair<string, string>>();
 
         public IList<Type> EntityTypes { get; } = new List<Type>();
-
+        public bool IsUseCUDConfigBuilder { get; private set; }
         public IList<IMiddleware> Middlewares { get; set; } = new List<IMiddleware>();
 
         public SmartSqlBuilder Build()
@@ -161,6 +161,11 @@ namespace SmartSql
                 ConfigBuilder.SetParent(rootConfigBuilder);
             }
 
+            if (IsUseCUDConfigBuilder)
+            {
+                ConfigBuilder = new CUDConfigBuilder(ConfigBuilder, EntityTypes, LoggerFactory);
+            }
+
             SmartSqlConfig = ConfigBuilder.Build();
             SmartSqlConfig.Alias = Alias;
             SmartSqlConfig.LoggerFactory = LoggerFactory;
@@ -222,15 +227,15 @@ namespace SmartSql
             deser = new DynamicDeserializer();
             DataReaderDeserializers.Insert(3, deser);
             deser = new EntityDeserializer();
-            DataReaderDeserializers.Insert(4, deser);
+            // add EntityDeserializer to the end
+            DataReaderDeserializers.Add(deser);
             foreach (var deserializer in DataReaderDeserializers)
             {
                 SmartSqlConfig.DeserializerFactory.Add(deserializer);
             }
         }
 
-        private bool UsedCache => SmartSqlConfig.Settings.IsCacheEnabled
-                                  && SmartSqlConfig.SqlMaps.Values.Any(sqlMap => sqlMap.Caches.Count > 0);
+        private bool UsedCache => SmartSqlConfig.Settings.IsCacheEnabled;
 
         private void BuildPipeline()
         {
@@ -312,6 +317,12 @@ namespace SmartSql
                 EntityTypes.Add(entityType);
             }
 
+            return this;
+        }
+
+        public SmartSqlBuilder UseCUDConfigBuilder(bool isUseCUDConfigBuilder = true)
+        {
+            IsUseCUDConfigBuilder = isUseCUDConfigBuilder;
             return this;
         }
 

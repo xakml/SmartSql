@@ -3,16 +3,10 @@ using AspectCore.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SkyApm.Diagnostics.SmartSql;
-using SkyApm.Utilities.DependencyInjection;
-using SmartSql.Cache.Sync;
-using SmartSql.ConfigBuilder;
-using SmartSql.DIExtension;
-using SmartSql.InvokeSync;
-using SmartSql.InvokeSync.Kafka;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using SmartSql.InvokeSync.RabbitMQ;
 using SmartSql.Sample.AspNetCore.Service;
 using Swashbuckle.AspNetCore.Swagger;
@@ -32,11 +26,13 @@ namespace SmartSql.Sample.AspNetCore
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // services.AddSkyApmExtensions().AddSmartSql();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
             services
                 .AddSmartSql((sp, builder) =>
                 {
                     builder.UseProperties(Configuration);
+                    
+                    
 //                    var subscriber = sp.GetRequiredService<ISubscriber>();
 //                    builder.UseCacheManager(new SyncCacheManager(subscriber));
                 })
@@ -47,17 +43,17 @@ namespace SmartSql.Sample.AspNetCore
                     o.AssemblyString = "SmartSql.Sample.Repos";
                     o.Filter = (type) => type.Namespace == "SmartSql.Sample.Repos";
                 })
-                .AddInvokeSync(options => { })
-                /**.AddRabbitMQPublisher(options =>
-                {
-                    options.HostName = "localhost";
-                    options.UserName = "guest";
-                    options.Password = "guest";
-                    options.Exchange = "smartsql";
-                    options.RoutingKey = "smartsql.sync";
-
-                })
                 **/;
+                // .AddInvokeSync(options => { })
+                // .AddRabbitMQPublisher(options =>
+                // {
+                //     options.HostName = "localhost";
+                //     options.UserName = "guest";
+                //     options.Password = "guest";
+                //     options.Exchange = "smartsql";
+                //     options.RoutingKey = "smartsql.sync";
+                //
+                // });
 //                .AddRabbitMQSubscriber(options =>
 //                {
 //                    options.HostName = "localhost";
@@ -86,13 +82,13 @@ namespace SmartSql.Sample.AspNetCore
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
+                c.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Title = "SmartSql.Sample.AspNetCore",
                     Version = "v1",
-                    Contact = new Contact
+                    Contact = new OpenApiContact
                     {
-                        Url = "https://github.com/Smart-Kit/SmartSql",
+                        Url = new Uri("https://github.com/Smart-Kit/SmartSql"),
                         Email = "ahoowang@qq.com",
                         Name = "SmartSql"
                     },
@@ -103,23 +99,27 @@ namespace SmartSql.Sample.AspNetCore
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.ApplicationServices.UseSmartSqlSync();
-            app.ApplicationServices.UseSmartSqlSubscriber((syncRequest) =>
-            {
-                Console.Error.WriteLine(syncRequest.Scope);
-            });
+            // app.ApplicationServices.UseSmartSqlSync();
+            // app.ApplicationServices.UseSmartSqlSubscriber((syncRequest) =>
+            // {
+            //     Console.Error.WriteLine(syncRequest.Scope);
+            // });
 
-            app.UseMvc();
-            app.UseStaticFiles();
             app.UseSwagger(c => { });
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartSql.Sample.AspNetCore"); });
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

@@ -61,7 +61,7 @@ namespace SmartSql.DataSource
         {
             Name = DbProvider.SQLITE,
             ParameterPrefix = "@",
-            Type = "System.Data.SQLite.SQLiteFactory,System.Data.SQLite",
+            Type = "Microsoft.Data.Sqlite.SqliteFactory,Microsoft.Data.Sqlite",
             SelectAutoIncrement = ""
         };
 
@@ -122,10 +122,15 @@ namespace SmartSql.DataSource
 
             dbProvider.Type = dbProviderCache.Type;
             dbProvider.Factory = dbProviderCache.Factory;
+
             var cmdBuilder = dbProvider.Factory.CreateCommandBuilder();
-            dbProvider.ParameterNamePrefix = cmdBuilder.QuotePrefix;
-            dbProvider.ParameterNameSuffix = cmdBuilder.QuoteSuffix;
-            cmdBuilder.Dispose();
+            if (cmdBuilder != null)
+            {
+                dbProvider.ParameterNamePrefix = cmdBuilder.QuotePrefix;
+                dbProvider.ParameterNameSuffix = cmdBuilder.QuoteSuffix;
+                cmdBuilder.Dispose();
+            }
+
             return true;
         }
 
