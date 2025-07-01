@@ -155,5 +155,26 @@ namespace SmartSql
 
     public class RequestContext : RequestContext<object>
     {
+        public RequestContext()
+        {
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope">scope</param>
+        public RequestContext(string scope)
+        {
+            this.Scope = scope;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="scope">scope</param>
+        /// <param name="sqlId">xml文件中statement 标签id</param>
+        public RequestContext(string scope,string sqlId)
+        {
+            this.Scope = scope;
+            this.SqlId = sqlId;
+        }
     }
 }
