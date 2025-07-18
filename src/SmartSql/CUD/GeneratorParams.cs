@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace SmartSql.CUD
 {
-     public class GeneratorParams
+    public class GeneratorParams
     {
         public SqlMap Map { get; }
 
