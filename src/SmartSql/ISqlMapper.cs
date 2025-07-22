@@ -4,6 +4,7 @@ using SmartSql.DbSession;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,6 +34,7 @@ namespace SmartSql
         /// <param name="requestContext"></param>
         /// <returns></returns>
         IList<T> Query<T>(AbstractRequestContext requestContext);
+
         /// <summary>
         /// 查询返回单个实体
         /// </summary>
@@ -40,6 +42,8 @@ namespace SmartSql
         /// <param name="requestContext"></param>
         /// <returns></returns>
         T QuerySingle<T>(AbstractRequestContext requestContext);
+
+        RawSqlBuilder<T> Queryable<T>();
 
         DataSet GetDataSet(AbstractRequestContext requestContext);
         DataTable GetDataTable(AbstractRequestContext requestContext);

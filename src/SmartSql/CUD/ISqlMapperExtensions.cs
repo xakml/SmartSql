@@ -1,8 +1,6 @@
-﻿using System;
+﻿using SmartSql.DbSession;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using SmartSql.DbSession;
 
 namespace SmartSql
 {
@@ -31,6 +29,7 @@ namespace SmartSql
             }
         }
 
+        #region Delete
         public static int DeleteAll<TEntity>(this ISqlMapper sqlMapper)
         {
             return ExecuteImpl(sqlMapper, session => session.DeleteAll<TEntity>());
@@ -46,6 +45,9 @@ namespace SmartSql
             return ExecuteImpl(sqlMapper, session => session.DeleteMany<TEntity, TPrimaryKey>(ids));
         }
 
+        #endregion
+
+        #region GetById
         public static TEntity GetById<TEntity, TPrimaryKey>(this ISqlMapper sqlMapper, TPrimaryKey id)
         {
             return ExecuteImpl(sqlMapper, session => session.GetById<TEntity, TPrimaryKey>(id));
@@ -57,7 +59,9 @@ namespace SmartSql
             return ExecuteImpl(sqlMapper,
                 session => session.GetById<TEntity, TPrimaryKey>(id, enablePropertyChangedTrack));
         }
+        #endregion
 
+        #region Insert
         public static TPrimaryKey Insert<TEntity, TPrimaryKey>(this ISqlMapper sqlMapper, TEntity entity)
         {
             return ExecuteImpl(sqlMapper, session => session.Insert<TEntity, TPrimaryKey>(entity));
@@ -67,6 +71,9 @@ namespace SmartSql
         {
             return ExecuteImpl(sqlMapper, session => session.Insert(entity));
         }
+        #endregion
+
+        #region Update
 
         public static int Update<TEntity>(this ISqlMapper sqlMapper, TEntity entity)
         {
@@ -87,9 +94,9 @@ namespace SmartSql
         {
             return ExecuteImpl(sqlMapper, session => session.DyUpdate<TEntity>(entity, enablePropertyChangedTrack));
         }
-        
-        
-        
+        #endregion
+
+        #region Query
         public static IList<dynamic> QueryDynamic(this ISqlMapper sqlMapper,  AbstractRequestContext requestContext)
         {
             return ExecuteImpl(sqlMapper, session => session.QueryDynamic(requestContext));
@@ -111,7 +118,9 @@ namespace SmartSql
         {
             return ExecuteImpl(sqlMapper, session => session.QuerySingleDictionary(requestContext));
         }
-
-
+        #endregion
+        
     }
+
+
 }

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SmartSql.Annotations;
+﻿using SmartSql.Annotations;
+using System;
 
 
 namespace SmartSql.Test.Entities
 {
+    [SmartSqlTable("t_user")]
     public class User
     {
         public User()
@@ -30,14 +29,19 @@ namespace SmartSql.Test.Entities
             Status = status;
         }
 
-        [Column("id")]
+        [SmartSqlColumn("id",IsAutoIncrement = true,IsPrimaryKey =true)]
         public virtual long Id { get; set; }
-        [Column("user_name")]
+        [SmartSqlColumn("user_name")]
         public virtual String UserName { get; set; }
-        [Column("status")]
+        [SmartSqlColumn("status")]
         public virtual UserStatus Status { get; set; }
-        [Column("is_delete")]
+        [SmartSqlColumn("is_delete")]
         public virtual bool IsDelete { get; set; }
+
+        public override string ToString()
+        {
+            return $"{{{nameof(Id)}={Id.ToString()}, {nameof(UserName)}={UserName}, {nameof(Status)}={Status.ToString()}, {nameof(IsDelete)}={IsDelete.ToString()}}}";
+        }
     }
 
     public enum UserStatus : Int16

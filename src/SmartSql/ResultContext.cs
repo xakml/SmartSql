@@ -12,6 +12,11 @@ namespace SmartSql
         public bool FromCache { get; protected set; }
         public abstract void SetData(object data, bool fromCache = false);
         public abstract object GetData();
+
+        public override string ToString()
+        {
+            return $"{{{nameof(End)}={End.ToString()}, {nameof(ResultType)}={ResultType}, {nameof(IsList)}={IsList.ToString()}, {nameof(FromCache)}={FromCache.ToString()}}}";
+        }
     }
 
     public class SingleResultContext<TResult> : ResultContext

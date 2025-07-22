@@ -176,5 +176,11 @@ namespace SmartSql
             this.Scope = scope;
             this.SqlId = sqlId;
         }
+
+        public override string ToString()
+        {
+            return $"SqlId={Scope}.{SqlId},CmdType={CommandType},IsStatementSql={IsStatementSql}";
+            //return $"{{{nameof(Request)}={Request}, {nameof(ExecutionContext)}={ExecutionContext}, {nameof(ExecutionType)}={ExecutionType.ToString()}, {nameof(DataSourceChoice)}={DataSourceChoice.ToString()}, {nameof(CommandType)}={CommandType.ToString()}, {nameof(Transaction)}={Transaction.ToString()}, {nameof(ReadDb)}={ReadDb}, {nameof(CommandTimeout)}={CommandTimeout.ToString()}, {nameof(EnablePropertyChangedTrack)}={EnablePropertyChangedTrack.ToString()}, {nameof(Statement)}={Statement}, {nameof(SqlBuilder)}={SqlBuilder}, {nameof(IsStatementSql)}={IsStatementSql.ToString()}, {nameof(RealSql)}={RealSql}, {nameof(AutoConverterName)}={AutoConverterName}, {nameof(Scope)}={Scope}, {nameof(SqlId)}={SqlId}, {nameof(FullSqlId)}={FullSqlId}, {nameof(CacheId)}={CacheId}, {nameof(Cache)}={Cache}, {nameof(ParameterMapId)}={ParameterMapId}, {nameof(ParameterMap)}={ParameterMap}, {nameof(ResultMapId)}={ResultMapId}, {nameof(ResultMap)}={ResultMap}, {nameof(MultipleResultMapId)}={MultipleResultMapId}, {nameof(MultipleResultMap)}={MultipleResultMap}, {nameof(Parameters)}={Parameters}, {nameof(CacheKeyTemplate)}={CacheKeyTemplate}, {nameof(CacheKey)}={CacheKey}}}";
+        }
     }
 }

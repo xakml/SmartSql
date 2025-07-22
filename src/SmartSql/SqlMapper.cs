@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SmartSql.Configuration;
@@ -128,6 +129,11 @@ namespace SmartSql
         public T QuerySingle<T>(AbstractRequestContext requestContext)
         {
             return ExecuteImpl(dbSession => dbSession.QuerySingle<T>(requestContext));
+        }
+
+        public RawSqlBuilder<T> Queryable<T>()
+        {
+            return new RawSqlBuilder<T>(this);
         }
 
         public DataSet GetDataSet(AbstractRequestContext requestContext)
