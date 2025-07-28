@@ -57,7 +57,7 @@ namespace SmartSql.Test.Unit
             ColumnAnnotationRepository =
                 RepositoryFactory.CreateInstance(typeof(IColumnAnnotationRepository), SqlMapper) as
                     IColumnAnnotationRepository;
-            InitTestData();
+            //InitTestData();
         }
 
         protected void InitTestData()
